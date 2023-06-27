@@ -156,6 +156,10 @@ function Getdata() {
         }
     ]
     });
+    $('#task_description').summernote({
+                tabDisable: true,
+                height: 200,
+            });
 }
 
 function TaskStore(){
@@ -192,7 +196,7 @@ function TaskEdit(task_id){
             $("#task_from_date").val(data.data[0]['task_from_date']);
             $("#task_to_date").val(data.data[0]['task_to_date']);
             $("#task_status").val(data.data[0]['task_status']);
-            $('#task_description').val(data.data[0]['task_description'])
+            $('#task_description').summernote('code', data.data[0]['task_description']);
         });
 }
 </script>
