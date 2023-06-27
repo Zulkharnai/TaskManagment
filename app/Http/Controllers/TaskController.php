@@ -10,17 +10,26 @@ use PhpParser\Node\Stmt\TryCatch;
 class TaskController extends Controller
 {
     // Admin Login
-    public function Task(){
+    public function Task(Request $req){
         $data = DB::table('task')->get();
         $user = DB::table('users')->get();
         $project = DB::table('project')->get();
         $profile = DB::table('users')
         ->where('users.user_id', '=', session('user_id'))
         ->get();
-        return view('Admins.Task.Task',["data" => $data, "user"=>$user, "project" => $project, "profile" => $profile]);
+        $project_id = $req->input('project_id');
+        return view('Admins.Task.Task',["data" => $data, "user"=>$user, "project" => $project, "profile" => $profile, "project_id" => $project_id]);
+    }
+    public function ProjectCheck(){
+        $project = DB::table('project')->get();
+        $profile = DB::table('users')
+        ->where('users.user_id', '=', session('user_id'))
+        ->get();
+        return view('Admins.Task.ProjectCheck',["project" => $project, "profile"=>$profile]);
     }
 
-    public function TaskShow(){
+    public function TaskShow(Request $req){
+
         $data = DB::table('task')
         ->leftJoin('project', function ($join) {
             $join->on('task.project_id', '=', 'project.project_id');
@@ -28,7 +37,8 @@ class TaskController extends Controller
         ->leftJoin('users', function ($join) {
             $join->on('task.user_id', '=', 'users.user_id');
         })
-            ->select('task.*', 'users.*', 'project.*')
+        ->where('task.project_id', '=', $req->input('project_id'))
+        ->select('task.*', 'users.*', 'project.*')
             ->get();
         return response()->json($data);
     }

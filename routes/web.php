@@ -69,6 +69,7 @@ Route::group(['prefix'=> 'ControlPanel', 'middleware'=> 'AuthMiddleware'], funct
     Route::post('/ProductivitiesStore', [ProductivitiesController::class, 'ProductivitiesStore'])->name('ProductivitiesStore');
     Route::get('/ProductivitiesDelete', [ProductivitiesController::class, 'ProductivitiesDelete'])->name('ProductivitiesDelete');
 
+    Route::get('/ProjectCheck', [TaskController::class, 'ProjectCheck'])->name('ProjectCheck');
     Route::get('/Task', [TaskController::class, 'Task'])->name('Task');
     Route::get('/TaskShow', [TaskController::class, 'TaskShow'])->name('TaskShow');
     Route::post('/TaskStore', [TaskController::class, 'TaskStore'])->name('TaskStore');

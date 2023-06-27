@@ -150,7 +150,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('Task')}}" class="nav-link">
+            <a href="{{route('ProjectCheck')}}" class="nav-link">
               <i class="nav-icon fas fa-check"></i>
               <p>
                 Tasks

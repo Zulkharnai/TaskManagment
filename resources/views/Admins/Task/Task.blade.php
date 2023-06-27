@@ -111,6 +111,8 @@
     </div>
 </div>
 
+
+
 <script>
 
     $(function () {
@@ -132,6 +134,7 @@ function Getdata() {
         ],
     ajax: {
         url: "{{ route('TaskShow') }}",
+        data: {project_id: {{$project_id}}},
         dataSrc: '',
     },
         columns: [{
